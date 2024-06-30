@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <div class="form-container">
+  <form action="{{ url_for('product') }}" method="post">
+    <a><button class="buttons" role="button" name='product_selection' value="electronics">Electronics</button></a>
+  </form>
+  <form action="{{ url_for('product') }}" method="post">
+    <a><button class="buttons" role="button" name='product_selection' value="groceries">Groceries</button></a>
+  </form>
+  <form action="{{ url_for('product') }}" method="post">
+    <a><button class="buttons" role="button" name='product_selection' value="books">Books</button></a>
+  </form>
+  <form action="{{ url_for('product') }}" method="post">
+    <a><button class="buttons" role="button" name='product_selection' value="sports">Sports</button></a>
+  </form>
+      <form action="{{ url_for('product') }}" method="post">
+    <a><button class="buttons" role="button" name='product_selection' value="tickets">Movie Tickets</button></a>
+  </form>
+      <form action="{{ url_for('product') }}" method="post">
+    <a><button class="buttons" role="button" name='product_selection' value="furniture">Furniture</button></a>
+  </form>
+</div>
+
+<!--	<form action="{{ url_for('product') }}" method="post" id="myForm">-->
+<!--					<select id="month" class="view" name="cat">-->
+<!--			                    <option value="all">Select Category</option>-->
+<!---->
+<!--      <option value="electronics">Electronics</option>-->
+<!--      <option value="groceries">Groceries</option>-->
+<!--      <option value="books">Books</option>-->
+<!--    <option value="sports">Sports</option>-->
+<!--    <option value="tickets">Movie Tickets</option>-->
+<!--    <option value="furniture">Furniture</option>-->
+<!--                     Add more months as options -->
+<!--                </select>-->
+<!---->
+<!--		</form>-->
+  <form action="{{ url_for('product') }}" method="post">
+
+  <div class="product" style="
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+">
+    <div class="meal">
+
+      <div class="items">
+        <!-- Meal items go here -->
+        {% for product in products %}
+        <div class="item">
+          <img src="data:image/jpeg;base64,{{ product.productImg|b64encode }}" alt="{{product.productName}}">
+          <div class="item-info">
+            <div class="item-name">{{product.productName}}  &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;   &#8377;{{product.productPrice}}</div>
+            <div class="item-name">{{product.productDiscription}}  &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;   &#8377;</div>
+<!--            <input name="prices" value="{{product.price}}">-->
+            <div class="item-checkbox">
+              <input type="checkbox" name="item" id="checkbox{{ product.id }}" value="{{product_cat}}">
+              <input type="checkbox" id="checkboxHidden{{ product.id }}" name="prices" value="{{product.price}}"  style="display: none;">
+              <div class="item-quantity">
+                <label>Quantity:</label>
+                <input type="number" name="quantity" min="1" id="quantityInput" max="4" class="quantity-input">
+              </div>
+            </div>
+          </div>
+        </div>
+          <script>
+      $(document).ready(function() {
+        $('#checkbox{{ product.id }}').change(function() {
+          if ($(this).is(':checked')) {
+            $('#checkboxHidden{{ product.id }}').prop('checked', true);
+          }
+        });
+      });
+    </script>
+        {% endfor%}
+      </div>
+    </div>
+  </div>
+  <div class="done-button" style="margin-top: 0px;">
+    <button type="submit">Done</button>
+  </div>
+
+  </form>
+
+<script>
+  function submitForm() {
+    document.getElementById("myForm").submit();
+  }
+</script>
+</body>
+</html>

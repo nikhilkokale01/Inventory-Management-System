@@ -1,0 +1,35 @@
+<h3>View Employees</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Job ID</th>
+                        <th>Edit</th>
+            <th>Delete</th>
+
+            <!-- Add more attribute headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+    {% for employee in employees %}
+            <tr>
+
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.firstName }}</td>
+                <td>{{ employee.middleName }}</td>
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.userName }}</td>
+                <td>{{ employee.password }}</td>
+                <td>{{ employee.job_id }}</td>
+
+                <td><button onclick="showEditForm('edit_employee',{{ employee.id }})">Edit</button></td>
+               <td><button onclick="deleteItem('employees', {{ employee.id }})">Delete</button></td>
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>

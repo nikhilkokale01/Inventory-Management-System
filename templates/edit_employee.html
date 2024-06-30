@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+ {% if messages %}
+  <ul>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+  </ul>
+ {% endif %}
+{% endwith %}
+
+    <form onsubmit="updateEntity(event, {{employee.id}}, 'employee')">
+             <select name="job" id="jobs">
+        <option value="-1">Select Jobs</option>
+        {% for job in jobs %}
+        <option value="{{job.id}}">{{job.job_title}}</option>
+        {% endfor %}
+        </select>
+          <select name="location" id="location">
+                          <option value="-1">Select Location</option>
+
+    {% for location in locations %}
+      <option value='{{location.id}}'>{{location.city}}</option>
+    {% endfor %}
+  </select>
+
+ <!-- Add hidden input for employee_id -->
+<input type="hidden" name="employee_id" value="{{ employee.id }}">
+
+<label for="fName">First Name:</label>
+<input type="text" name="fName" id="fName" placeholder="First Name" value="{{ employee.firstName }}" required="required"/>
+<label for="mName">Middle Name:</label>
+<input type="text" name="mName" id="mName" placeholder="Middle Name" value="{{ employee.middleName }}" required="required"/>
+<label for="lName">Last Name:</label>
+<input type="text" id="lName" name="lName" placeholder="Last Name" value="{{ employee.lastName }}" required="required"/>
+<label for="uName">Username:</label>
+<input type="text" id="uName" name="uName" placeholder="Username" value="{{ employee.userName }}" required="required"/>
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" value="{{ employee.email }}" required>
+<label for="password">Password:</label>
+<input type="text" id="password" name="password" placeholder="Password" required="required" value="{{ employee.password }}"/>
+
+<button onclick="submitForm('edit_employee')" class="btn btn-primary btn-block btn-large">Update</button>
+    <button type="button" onclick="hideEditForm()">Cancel</button>
+
+    </form>
+
+</body>
+</html>

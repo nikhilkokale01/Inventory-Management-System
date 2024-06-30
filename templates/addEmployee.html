@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+
+    <form action="{{ url_for('addEmployee') }}" method="post">
+        <input type="text" name="fName" placeholder="First Name" required="required"/>
+        <input type="text" name="mName" placeholder="Middle Name" required="required"/>
+        <input type="text" name="lName" placeholder="Last Name" required="required"/>
+        <input type="text" name="uName" placeholder="Username" required="required"/>
+        <input type="text" name="password" placeholder="Password" required="required"/>
+        {% for j in jobs %}
+        <input type="checkbox" id={{j.job_title}} name=job_title value={{j.job_title}}>
+        <label for={{j.job_title}}>{{j.job_title}}</label><br>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-block btn-large">Add</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Employee Interface</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #ddd;
+}
+
+.sidebar a.active {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.dashboard-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h3 {
+    color: #333;
+}
+
+</style>
+<body>
+
+<div class="header">
+    <h1>Employee Management System</h1>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li><a href="/employee_interface" class="active">Dashboard</a></li>
+
+<!--            <li><a href="#">Profile</a></li>-->
+<!--            <li><a href="#">Leave Requests</a></li>-->
+            <li><a href="/tasks">Tasks</a></li>
+<!--            <li><a href="#">Settings</a></li>-->
+<!--            <li><a href="#">Logout</a></li>-->
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Welcome, {{curr.firstName}}!</h2>
+        <div class="dashboard-card">
+            <h3>Employee Information</h3>
+            <p>ID: {{curr.id}}</p>
+            <p>Name: {{curr.firstName}}</p>
+            <p>Email: {{curr.email}}</p>
+            <p>Department: {{curr.job.job_title}}</p>
+        </div>
+
+<!--        <div class="dashboard-card">-->
+<!--            <h3>Leave Balance</h3>-->
+<!--            <p>Vacation: 10 days</p>-->
+<!--            <p>Sick Leave: 5 days</p>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="dashboard-card">-->
+<!--            <h3>Upcoming Tasks</h3>-->
+<!--            <ul>-->
+<!--                <li>Task 1 - Due on 2023-12-01</li>-->
+<!--                <li>Task 2 - Due on 2023-12-05</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+            <div class="dashboard-card">
+        <h3>Customers from the {{city}}</h3>
+        <ul>
+            {% for user in users_same_location %}
+                {% for order in user.orders %}
+                <li>{{ user.firstName }} - {{ user.email }} - Product Name : {{ order.product.productName }} - Quantity : {{ order.quantity }} - </li>
+                            {% if not order.delivered %}
+                                <button onclick="markAsDelivered({{ order.id }})">Mark as Delivered</button>
+                            {% else %}
+                                Delivered
+                            {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+    <script src="{{ url_for('static', filename='empscript.js') }}"></script>
+</body>
+</html>

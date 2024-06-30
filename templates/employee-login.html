@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Login</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #2ecc71; /* Different background color */
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 400px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      background-color: #16a085; /* Different tab background color */
+      color: #fff;
+    }
+
+    .tab {
+      padding: 15px;
+      cursor: pointer;
+      flex-grow: 1;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    .tab:hover {
+      background-color: #1abc9c; /* Different tab hover color */
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #16a085; /* Different button background color */
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #1abc9c; /* Different button hover color */
+    }
+
+    .employee-login {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #16a085; /* Different employee login button color */
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .employee-login:hover {
+      background-color: #1abc9c; /* Different employee login button hover color */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+      {% with messages = get_flashed_messages() %}
+ {% if messages %}
+  <ul>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+  </ul>
+ {% endif %}
+{% endwith %}
+  <div class="tabs">
+    <div class="tab" onclick="showTab('login')">Login</div>
+    <div class="tab" onclick="showTab('register')">Register</div>
+  </div>
+  <div class="content" id="loginContent">
+    <!-- Login Form -->
+    <form action="{{ url_for('employee_login') }}" method="post">
+      <div class="form-group">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <div class="content" id="registerContent" style="display: none;">
+    <!-- Registration Form -->
+  <form action="{{ url_for('employee_register') }}" method="post">
+
+            <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+                  <div class="form-group">
+        <label for="middleName">Middle Name:</label>
+        <input type="text" id="middleName" name="middleName" required>
+      </div>
+            <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+            <div class="form-group">
+        <label for="registerUsername">Username:</label>
+        <input type="text" id="registerUsername" name="registerUsername" required>
+      </div>
+      <div class="form-group">
+        <label for="registerEmail">Email:</label>
+        <input type="email" id="registerEmail" name="registerEmail" required>
+      </div>
+      <div class="form-group">
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" name="registerPassword" required>
+      </div>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function showTab(tabName) {
+    if (tabName === 'login') {
+      document.getElementById('loginContent').style.display = 'block';
+      document.getElementById('registerContent').style.display = 'none';
+    } else {
+      document.getElementById('loginContent').style.display = 'none';
+      document.getElementById('registerContent').style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>

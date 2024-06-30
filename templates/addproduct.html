@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Add Supplier</title>
+</head>
+<body>
+<form action="{{ url_for('add_product') }}" method="post" enctype="multipart/form-data">
+
+<label for="category">Choose a Category:</label>
+  <select name="category" id="category">
+                    <option value="all">Select Category</option>
+        {% for category in categories %}
+      <option value='{{category.id}}'>{{category.name}}</option>
+      {% endfor %}
+<!--      <option value="groceries">Groceries</option>-->
+<!--      <option value="books">Books</option>-->
+<!--    <option value="sports">Sports</option>-->
+<!--    <option value="tickets">Movie Tickets</option>-->
+<!--    <option value="furniture">Furniture</option>-->
+  </select>
+
+  <label for="supplier">Choose a Supplier:</label>
+  <select name="supplier" id="supplier">
+                          <option value="all">Select Supplier</option>
+
+    {% for supplier in suppliers %}
+      <option value='{{supplier.id}}'>{{supplier.company_name}}</option>
+    {% endfor %}
+  </select>
+
+            <label for="product_name">Product Name:</label>
+
+        <input type="text" id="product_name" name="productName" placeholder="Product Name" required="required"/>
+            <label for="price">Price:</label>
+
+        <input type="text" id="price" name="price" placeholder="Price" required="required"/>
+                <label for="description">Description:</label>
+
+    <input type="text" id="description" name="discription" placeholder="discription" required="required"/>
+                        <label for="quantity">Quantity:</label>
+
+    <input type="number" id="quantity" name="quantity" placeholder="discription" required="required"/>
+
+    <label for="file">Image:</label>
+
+    <input type="file" id="file" name="file" required="required"/>
+        <button type="submit">Done</button>
+    </form>
+</body>
+</html>

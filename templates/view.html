@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-KyZXEAg3QhqLMpMI6gfu8vhXuoMhbcCQ6BwlJ1oFuU2BrUuq2FFbVoN6L4Oz/uthhMkqGaqG1xlJew2Xu4zEYg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="dashboard-container">
+
+        <div class="sidebar">
+
+            <h1>Dashboard</h1>
+            <ul>
+                <li><a href="/"><span>Home</span></a></li>
+                <li><a href="/analytics"><span>Analytics</span></a></li>
+                <li><a href="/view" class="active"><span>View</span></a></li>
+                <li><a href="/settings"><span>Settings</span></a></li>
+                <li><a href="#"><span>Logout</span></a></li>
+            </ul>
+
+        </div>
+        <div class="content">
+
+              <!-- New View tab -->
+    <div class="tabs">
+        <button onclick="showView('view_users')">View Users</button>
+        <button onclick="showView('view_supplier')">View Suppliers</button>
+        <button onclick="showView('view_category')">View Category</button>
+        <button onclick="showView('view_customers')">View Customers</button>
+        <button onclick="showView('view_products')">View Products</button>
+        <button onclick="showView('view_employees')">View Employees</button>
+        <button onclick="showView('view_orders')">View Orders</button>
+        <button onclick="showView('view_jobs')">View Jobs</button>
+    </div>
+    <div id="view-container"></div>
+                <div id="edit-container"></div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

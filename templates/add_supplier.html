@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Add Supplier</title>
+</head>
+<body>
+    <form id="addSupplierForm" action="{{ url_for('add_supplier') }}" method="post">
+        <label for="supplier_name">Supplier Name:</label>
+        <input type="text" id="supplier_name" name="company_name" placeholder="company_name" required>
+                <label for="supplier_names">Phone Number:</label>
+        <input type="text" id="supplier_names" name="phone_number" placeholder="phone_number" required>
+        <button type="submit">Add Supplier</button>
+    </form>
+    <div id="formMessage"></div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

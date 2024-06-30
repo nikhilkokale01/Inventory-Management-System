@@ -1,0 +1,30 @@
+<h3>View Products</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category ID</th>
+            <th>Supplier ID</th>
+            <!-- Add more attribute headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+            <tr>
+
+                <td>{{ product.id }}</td>
+                <td>{{ product.productName }}</td>
+                <td>{{ product.productDiscription }}</td>
+                <td>{{ product.productPrice }}</td>
+                <td>{{ product.category_id }}</td>
+                <td>{{ product.supplier_id }}</td>
+                                <td><button onclick="showEditForm('edit_product',{{ product.id }})">Edit</button></td>
+               <td><button onclick="deleteItem('products', {{ product.id }})">Delete</button></td>
+
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>

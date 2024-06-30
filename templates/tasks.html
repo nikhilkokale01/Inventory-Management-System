@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Tasks</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #ddd;
+}
+
+.sidebar a.active {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.dashboard-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h3 {
+    color: #333;
+}
+
+</style>
+<body>
+
+<div class="header">
+    <h1>Employee Management System</h1>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <ul>
+<!--            <li><a href="/employee_interface" >Dashboard</a></li>-->
+                        <li><a href="{{ url_for('employee_interface', curr=curr) }}">Dashboard</a></li>
+
+<!--            <li><a href="#">Profile</a></li>-->
+<!--            <li><a href="#">Leave Requests</a></li>-->
+            <li><a href="{{ url_for('tasks', curr=curr) }}" class="active">Tasks</a></li>
+<!--            <li><a href="#">Settings</a></li>-->
+<!--            <li><a href="#">Logout</a></li>-->
+        </ul>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Users from the Same Location</h3>
+        <ul>
+            {% for user in users_same_location %}
+                <li>{{ user.firstName }} - {{ user.email }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+    <script src="{{ url_for('static', filename='empscript.js') }}"></script>
+
+</body>
+</html>

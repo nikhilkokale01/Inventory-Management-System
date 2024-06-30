@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-KyZXEAg3QhqLMpMI6gfu8vhXuoMhbcCQ6BwlJ1oFuU2BrUuq2FFbVoN6L4Oz/uthhMkqGaqG1xlJew2Xu4zEYg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="dashboard-container">
+
+        <div class="sidebar">
+
+            <h1>Dashboard</h1>
+            <ul>
+                <li><a href="/dashboard" class="active"><span>Home</span></a></li>
+<!--                <li><a href="/analytics"><span>Analytics</span></a></li>-->
+                <li><a href="/view"><span>View</span></a></li>
+<!--                <li><a href="/settings"><span>Settings</span></a></li>-->
+                <li><a href="#"><span>Logout</span></a></li>
+            </ul>
+
+        </div>
+        <div class="content">
+
+            <h2>Welcome, Admin!</h2>
+<!--            <div class="analytics">-->
+<!--                <h3>Analytics Data</h3>-->
+<!--                <ul>-->
+<!--                    {% for item in data.analytics_data %}-->
+<!--                        <li>{{ item.metric }}: {{ item.value }}</li>-->
+<!--                    {% endfor %}-->
+<!--                </ul>-->
+<!--            </div>-->
+    <button onclick="showForm('add_supplier')">Add Supplier</button>
+    <button onclick="showForm('add_user')">Add User</button>
+    <button onclick="showForm('add_product')">Add Product</button>
+    <button onclick="showForm('add_category')">Add Category</button>
+    <button onclick="showForm('add_job')">Add Jobs</button>
+    <button onclick="showForm('add_employee')">Add Employee</button>
+    <button onclick="showForm('add_location')">Add Location</button>
+    <!-- Add buttons for add_employee and add_product -->
+    <div id="forms-container"></div>
+            <div id="flash-messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

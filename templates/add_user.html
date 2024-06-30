@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='form-styles.css') }}">
+    <title>Add User</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+ {% if messages %}
+  <ul>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+  </ul>
+ {% endif %}
+{% endwith %}
+    <form action="{{ url_for('add_user') }}" method="post">
+          <label for="location">Choose a Location:</label>
+  <select name="location" id="location">
+                          <option value="-1">Select Location</option>
+
+    {% for location in locations %}
+      <option value='{{location.id}}'>{{location.city}}</option>
+    {% endfor %}
+  </select>
+
+        <label for="firstname">First name:</label>
+        <input type="text" id="firstname" name="fName" required>
+        <label for="middlename">Middle Name:</label>
+        <input type="text" id="middlename" name="mName" required>
+                <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lName" required>
+                <label for="username">Username:</label>
+
+        <input type="text" id="username" name="uName" required>
+                <label for="email">Email:</label>
+
+        <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Add User</button>
+    </form>
+</body>
+</html>

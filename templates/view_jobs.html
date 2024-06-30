@@ -1,0 +1,21 @@
+<h3>View Jobs</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Job ID</th>
+            <th>Job Title</th>
+            <th>Salary</th>
+            <!-- Add more attribute headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+    {% for job in jobs %}
+            <tr>
+
+                <td>{{ job.id }}</td>
+                <td>{{ job.job_title }}</td>
+                <td>{{ job.salary }}</td>
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>

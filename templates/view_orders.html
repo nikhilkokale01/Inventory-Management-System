@@ -1,0 +1,27 @@
+<h3>View Orders</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product</th>
+            <th>Product Quantity</th>
+            <th>Date</th>
+            <th>Price</th>
+            <th>Customer ID</th>
+            <!-- Add more attribute headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+            <tr>
+
+                <td>{{ order.id }}</td>
+                <td>{{ order.product }}</td>
+                <td>{{ order.productQuantity }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.price }}</td>
+                <td>{{ order.customer_id }}</td>
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>

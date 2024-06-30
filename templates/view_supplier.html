@@ -1,0 +1,22 @@
+<h3>View Supplier</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Supplier ID</th>
+            <th>Supplier Name</th>
+            <th>Name</th>
+            <!-- Add more attribute headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+    {% for supplier in suppliers %}
+            <tr>
+
+                <td>{{ supplier.id }}</td>
+
+    <td>{{ supplier.company_name }} </td>
+    <td>{{supplier.phone_number}}</td>
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>
